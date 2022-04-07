@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.stupidzhang.valid.mapper.CpsInvalidItemMapper">
+    <resultMap id="BaseResultMap" type="com.stupidzhang.valid.model.CpsInvalidItem">
+        <id column="id" property="id"/>
+        <result column="title" property="title"/>
+        <result column="goods_id" property="goodsId"/>
+        <result column="goods_url" property="goodsUrl"/>
+        <result column="platform" property="platform"/>
+        <result column="article_id" property="articleId"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_time" property="updateTime"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, `title`,`goods_id`,goods_url`,`platform` , `article_id` , `create_time`,`update_time`
+    </sql>
+
+    <insert id="batchInsert" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO
+        cps_invalid_item(`title`,`goods_id`,`goods_url`, `platform`, `article_id`)
+        VALUES
+        <foreach collection="itemList" item="item" separator=",">
+            (#{item.title},
+            #{item.goodsId},
+            #{item.goodsUrl},
+            #{item.platform},
+            #{item.articleId})
+        </foreach>
+    </insert>
+
+    <select id="count" resultType="integer">
+        select count(*)
+        from cps_invalid_item
+        where goods_id = #{goodsId}
+    </select>
+
+</mapper>

@@ -12,7 +12,7 @@ import java.util.Date;
 @Data
 public class ZhiHuArticle implements Serializable {
     private static final long serialVersionUID = 1L;
-    private Long id;
+    private Integer id;
     private String title;
     private String url;
     private String articleId;

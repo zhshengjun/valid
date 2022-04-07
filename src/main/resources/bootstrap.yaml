@@ -1,3 +1,13 @@
+feign:
+  okhttp:
+    enabled: true
+  httpclient:
+    timeToLive: 30
+  client:
+    config:
+      default:
+        connect-timeout: 10000
+        read-timeout: 10000
 nacos:
   server-addr: nacos.stupidzhang.com:4848
   namespace: 52478819-0492-4091-9890-eca56e726d39
@@ -17,7 +27,7 @@ spring:
         server-addr: ${nacos.server-addr}
         namespace: ${nacos.namespace}
         fileExtension: yaml
-        shared-configs[0]:
-          data-id: data-valid-source.yaml
+        shared-configs:
+          - data-id: data-valid-source.yaml
 mybatis:
   mapper-locations: classpath*:mapper/*.xml

@@ -12,8 +12,7 @@
         <result column="update_time" property="updateTime"/>
     </resultMap>
     <sql id="Base_Column_List">
-        id
-        , `title`,`url` , `article_id` ,`answer_id`, `type` , `create_time`,`update_time`
+        id, `title`,`url` , `article_id` ,`answer_id`, `type` , `create_time`,`update_time`
     </sql>
     <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
         select
@@ -27,58 +26,5 @@
         <include refid="Base_Column_List"/>
         from zhihu_article
     </select>
-
-    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
-        delete
-        from zhihu_article
-        where id = #{id}
-    </delete>
-    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.stupidzhang.valid.model.ZhiHuArticle"
-            useGeneratedKeys="true">
-        insert into zhihu_article (`title`, `url`, `article_id`, `answer_id`, `type`)
-        values (#{title},
-                #{url},
-                #{articleId},
-                #{answerId},
-                #{type})
-    </insert>
-    <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.stupidzhang.valid.model.ZhiHuArticle"
-            useGeneratedKeys="true">
-        insert into zhihu_article
-        <trim prefix="(" suffix=")" suffixOverrides=",">
-            <if test="title != null">
-                `title`,
-            </if>
-            <if test="url != null">
-                url,
-            </if>
-            <if test="articleId != null">
-                article_id,
-            </if>
-            <if test="answerId != null">
-                answer_id,
-            </if>
-            <if test="type != null">
-                type,
-            </if>
-        </trim>
-        <trim prefix="values (" suffix=")" suffixOverrides=",">
-            <if test="title != null">
-                #{title},
-            </if>
-            <if test="url != null">
-                #{url},
-            </if>
-            <if test="articleId != null">
-                #{article_id},
-            </if>
-            <if test="answerId != null">
-                #{article_id},
-            </if>
-            <if test="type != null">
-                #{type},
-            </if>
-        </trim>
-    </insert>
 
 </mapper>
